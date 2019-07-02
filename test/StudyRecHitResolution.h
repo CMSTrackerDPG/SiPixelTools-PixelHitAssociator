@@ -1,11 +1,5 @@
-#ifndef SiPixelRecHitsValid_pix_h
-#define SiPixelRecHitsValid_pix_h
-
-/** \class SiPixelRecHitsValid
- * File: SiPixelRecHitsValid.h
- * \author Jason Shaev, JHU
- * Created: 6/7/06
- */
+#ifndef StudyRecHitResolution_h
+#define StudyRecHitResolution_h
 
 #include "FWCore/Framework/interface/Frameworkfwd.h"
 #include "FWCore/Framework/interface/EDAnalyzer.h"
@@ -56,14 +50,14 @@
 
 class TrackerTopology;
 
-class SiPixelRecHitsValid_pix : public edm::EDAnalyzer {
+class StudyRecHitResolution : public edm::EDAnalyzer {
 
    public:
 	//Constructor
-	SiPixelRecHitsValid_pix(const edm::ParameterSet& conf);
+	StudyRecHitResolution(const edm::ParameterSet& conf);
 
 	//Destructor
-	~SiPixelRecHitsValid_pix();
+	~StudyRecHitResolution();
 
    protected:
 
@@ -82,15 +76,15 @@ class SiPixelRecHitsValid_pix : public edm::EDAnalyzer {
 	TrackerHitAssociator::Config trackerHitAssociatorConfig_;
 
 	void fillBarrel(const TrackingRecHit*,const PSimHit &, DetId, const PixelGeomDetUnit *,	
-			 const TrackerTopology *);
+			 const TrackerTopology *,double,double,double);
 	void fillForward(const TrackingRecHit*, const PSimHit &, DetId, const PixelGeomDetUnit *,
-			 const TrackerTopology *);
+			 const TrackerTopology *,double,double,double);
 #ifdef PIXEL_ASSOCIATOR
-        void matchToSimHits(const PixelHitAssociator&, const TrackingRecHit *,
-			    DetId, const PixelGeomDetUnit*, const TrackerTopology *);
+        float matchToSims(const PixelHitAssociator&, const TrackingRecHit *,
+			    DetId, const PixelGeomDetUnit*, const TrackerTopology *,double,double,double);
 #else
-        void matchToSimHits(const TrackerHitAssociator&, const TrackingRecHit *, 
-			    DetId, const PixelGeomDetUnit*, const TrackerTopology *);
+        float matchToSims(const TrackerHitAssociator&, const TrackingRecHit *, 
+			    DetId, const PixelGeomDetUnit*, const TrackerTopology *,double,double,double);
 #endif
         int PhaseIBladeOfflineToOnline(const int&);
 
@@ -123,8 +117,12 @@ class SiPixelRecHitsValid_pix : public edm::EDAnalyzer {
 	MonitorElement* recHitXResNonFlippedLadderLayers[4];
         MonitorElement *recHitXResFlippedLadderLayersSide[4][2];
         MonitorElement *recHitXResNonFlippedLadderLayersSide[4][2];
+
 	MonitorElement *recHitL1XResSize1,*recHitL1XResSize2,*recHitL1XResSize3;   
 	MonitorElement *recHitL2XResSize1,*recHitL2XResSize2,*recHitL2XResSize3;   
+	MonitorElement *recHitL3XResSize1,*recHitL3XResSize2,*recHitL3XResSize3;   
+	MonitorElement *recHitL4XResSize1,*recHitL4XResSize2,*recHitL4XResSize3;   
+
 	MonitorElement* recHitYResLayer1Modules[8];
 	MonitorElement* recHitYResLayer2Modules[8];
 	MonitorElement* recHitYResLayer3Modules[8];
@@ -141,17 +139,29 @@ class SiPixelRecHitsValid_pix : public edm::EDAnalyzer {
 	MonitorElement* recHitYResLayersP2[4];
 	MonitorElement* recHitYResLayersP3[4];
 	MonitorElement* recHitYResLayersP4[4];
+
+	MonitorElement* recHitXResVsPhiP[4];
+	MonitorElement* recHitXResVsPhiP1[4];
+	MonitorElement* recHitXResVsPhiP2[4];
+	MonitorElement* recHitXResVsPhiP3[4];
+
 	MonitorElement* recHitXResLayer1Eta[25];
 	MonitorElement* recHitXResLayer2Eta[25];
 	MonitorElement* recHitXResLayer3Eta[25];
+	MonitorElement* recHitXResLayer4Eta[25];
 	MonitorElement* recHitYResLayer1Eta[25];
 	MonitorElement* recHitYResLayer2Eta[25];
 	MonitorElement* recHitYResLayer3Eta[25];
+	MonitorElement* recHitYResLayer4Eta[25];
+
   	MonitorElement *htheta1,*hbeta1,*hphi1;
   	MonitorElement *htheta2,*hbeta2,*hphi2;
-	MonitorElement* heta1, *heta2, *heta3;
-	MonitorElement* htest1, *htest2;
-	MonitorElement *recHitX11, *recHitX12, *recHitX21, *recHitX22;
+	MonitorElement *heta1, *heta2, *heta3, *heta4;
+	MonitorElement *hz1, *hz1_1, *hz1_2, *hz1_3, *hz1_4, *hz1_5;
+	MonitorElement *hz1_11, *hz1_12, *hz1_13,*hz1_14,*hz1_15,*hz1_16,*hz1_17;	
+
+	//MonitorElement *recHitX11, *recHitX12; // *recHitX21, *recHitX22;
+	MonitorElement *hptTrack, *hphiTrack, *hetaTrack;
 
 	//RecHits FPIX
 	MonitorElement* recHitXResAllF;
@@ -210,12 +220,47 @@ class SiPixelRecHitsValid_pix : public edm::EDAnalyzer {
 	MonitorElement *recHitYAlignError1, *recHitYAlignError2, *recHitYAlignError3;
 	MonitorElement *recHitYAlignError4, *recHitYAlignError5, *recHitYAlignError6, *recHitYAlignError7;
 
-	MonitorElement* test;
+	// cluster size vs phi
+	MonitorElement* clusizeXVsX[4];
+	MonitorElement* clusizeXVsPhi[4];
+	MonitorElement* clusizeX1VsPhi[4];
+	MonitorElement* clusizeX2VsPhi[4];
+	MonitorElement* clusizeX3VsPhi[4];
+
+	MonitorElement *cluSizeXVsPhi1; // large scale ,*clusizeX22VsPhi,*clusizeX23VsPhi,*clusizeX24VsPhi ;
+	MonitorElement *size1_mz_f,*size1_mz_nf,*size1_pz_f,*size1_pz_nf;
+	MonitorElement *size2_mz_f,*size2_mz_nf,*size2_pz_f,*size2_pz_nf;
+	MonitorElement *size3_mz_f,*size3_mz_nf,*size3_pz_f,*size3_pz_nf;
+
+	MonitorElement *hdist1, *hdist2, *hdist3, *hdist4;
+	MonitorElement *hcount1,*hcount2,*hcount3,*hcount4,*hcount5,*hcount6,*hcount7,*hcount8,*hcount9;
+	MonitorElement *test;
+	MonitorElement *htest1, *htest2, *htest3, *htest4, *htest5;
+	MonitorElement *hParticleType1,*hTrackId1,*hProcessType1,
+	  *hParticleType2,*hTrackId2,*hProcessType2,
+	  *hParticleType3,*hTrackId3,*hProcessType3,
+	  *hParticleType4,*hTrackId4,*hProcessType4,
+	  *hParticleType5,*hTrackId5,*hProcessType5;
+
+	MonitorElement *phiPerDet1,*phiPerDet2,*phiPerDet3,*phiPerDet4 ;
+	MonitorElement *cluXPerDet1,*cluXPerDet2,*cluXPerDet3,*cluXPerDet4;
+	MonitorElement *cluYPerDet1,*cluYPerDet2,*cluYPerDet3,*cluYPerDet4;
+	//MonitorElement *simsXPerDet1,*simsXPerDet2,*simsXPerDet3,*simsXPerDet4;
+	//MonitorElement *simsYPerDet1,*simsYPerDet2,*simsYPerDet3,*simsYPerDet4;
+
+
+
+
 
         edm::InputTag src_;
         bool useTracks_;
         edm::InputTag tracks_;
         bool phase_;
+	bool quick_;
+	bool muOnly_;
+	double ptCut_;
+	int count1, count2, count3, count4, count5, count6, count9;
+
 };
 
 #endif
