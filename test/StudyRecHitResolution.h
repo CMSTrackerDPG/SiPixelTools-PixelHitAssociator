@@ -58,7 +58,7 @@
 //#define PIXEL_ASSOCIATOR // use my special pixel associator
 
 #ifdef PIXEL_ASSOCIATOR
-#include "DPGAnalysis-SiPixelTools/PixelHitAssociator/interface/PixelHitAssociator.h"
+#include "SiPixelTools/PixelHitAssociator/interface/PixelHitAssociator.h"
 #else 
 #include "SimTracker/TrackerHitAssociation/interface/TrackerHitAssociator.h"
 #endif
