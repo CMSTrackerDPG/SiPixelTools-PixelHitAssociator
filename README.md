@@ -8,11 +8,11 @@ A customised version of the SimHit-RecHit comparion, used for resolution testing
 Prepare your working directory with CMSSW
 
 ```
-export SCRAM_ARCH=slc7_amd64_gcc820
-cmsrel CMSSW_11_1_4
-cd CMSSW_11_1_4/src
+export SCRAM_ARCH=el9_amd64_gcc12
+cmsrel CMSSW_14_0_15
+cd CMSSW_14_0_15/src
 cmsenv
-git clone -b CMSSW_11_X_Y https://github.com/CMSTrackerDPG/SiPixelTools-PixelHitAssociator.git SiPixelTools/PixelHitAssociator
+git clone https://github.com/CMSTrackerDPG/SiPixelTools-PixelHitAssociator.git SiPixelTools/PixelHitAssociator
 scram b -j 8
 cd SiPixelTools/PixelHitAssociator/test/
 ```
