@@ -424,7 +424,7 @@ process.siPixelClustersPreSplitting.src = 'simSiPixelDigis' # for V5, direct
 #process.load("Validation.TrackerRecHits.SiPixelRecHitsValid_cfi")
 
 # my rec-sim hit compare 
-process.load("DPGAnalysis-SiPixelTools.PixelHitAssociator.SiPixelRecHitsValid_cff")
+process.load("SiPixelTools.PixelHitAssociator.SiPixelRecHitsValid_cff")
 
 process.pixRecHitsValid.outputFile="pixelsimrechitshistos.root"
 #process.pixRecHitsValid.verbose=True

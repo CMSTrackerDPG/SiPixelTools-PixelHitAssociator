@@ -10,7 +10,7 @@ setenv SCRAM_ARCH slc6_amd64_gcc491
 # must be run frm the release area
 eval `scram runtime -csh`
 
-cd DPGAnalysis-SiPixelTools/PixelHitAssociator/phase1 
+cd SiPixelTools/PixelHitAssociator/phase1 
 
 #cmsRun DigisToRecHitsValid.py
 #cmsRun Sims_To_ValidRecHits.py

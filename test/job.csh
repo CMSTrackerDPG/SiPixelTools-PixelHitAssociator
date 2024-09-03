@@ -14,7 +14,7 @@ source /afs/cern.ch/project/gd/apps/cms/cmsset_default.csh
 # must be run frm the release area
 eval `scram runtime -csh`
 
-cd DPGAnalysis-SiPixelTools/PixelHitAssociator/test
+cd SiPixelTools/PixelHitAssociator/test
 
 #cmsRun Sims_To_ValidRecHits.py
 cmsRun Raw_To_RecHitsValid.py

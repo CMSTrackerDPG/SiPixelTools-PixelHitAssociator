@@ -32,43 +32,43 @@ void MCResolution() {
   // Tanja's comparison
   //real_tem = "/afs/cern.ch/user/j/jkarancs/public/h_10000.root";
   //compare_two(real_gen, real_tem, dir+"recHitFPIX/RecHit_YRes_Ring2_Side2_Panel2", "SimHit-RecHit Y-residuals (#mum)", "YResiduals_FPix_Ring2_pZ_Pan2_AlgoComp", "Ring2 (+Z, Panel2)",  "Generic (Mine)","Generic (Tanja)", 601, 634);
-  const char* tem_def  = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_default_10000.root";
-  const char* tem_fix  = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_fix_1000.root"; // pre2 (300um, big pixels fix)
-  const char* tem_fix2 = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_fix2_10000.root"; // pre3 (290 um + ?big pix?)
-  //const char* tem_fix3 = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_fix3_10000.root"; // pre4+PR (290 um + big pix, old temp)
-  const char* tem_fix3 = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_1k_ls0_la0_ge0_te0.root"; // pre4+PR (290 um + big pix, old temp)
-  const char* tem_fix4 = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_fix4_3000.root"; // pre4+PR+New conditions
-  const char* gen_def  = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/gen_default_10000.root";
-  const char* gen_fix2 = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/gen_fix2_10000.root"; // pre3 (290 um + ?big pix?)
-  const char* gen_fix4 = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/gen_fix4_10000.root"; // pre4+PR+New conditions
+  const char* tem_def  = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/tem_default_10000.root";
+  const char* tem_fix  = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/tem_fix_1000.root"; // pre2 (300um, big pixels fix)
+  const char* tem_fix2 = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/tem_fix2_10000.root"; // pre3 (290 um + ?big pix?)
+  //const char* tem_fix3 = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/tem_fix3_10000.root"; // pre4+PR (290 um + big pix, old temp)
+  const char* tem_fix3 = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/tem_1k_ls0_la0_ge0_te0.root"; // pre4+PR (290 um + big pix, old temp)
+  const char* tem_fix4 = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/tem_fix4_3000.root"; // pre4+PR+New conditions
+  const char* gen_def  = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/gen_default_10000.root";
+  const char* gen_fix2 = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/gen_fix2_10000.root"; // pre3 (290 um + ?big pix?)
+  const char* gen_fix4 = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/gen_fix4_10000.root"; // pre4+PR+New conditions
 
-  const char* gen_phase1_old_oldcond = "/data/jkarancs/CMSSW/PhaseI/test/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/gen_phase1_oldcode_10k.root";
-  const char* tem_phase1_old_oldcond = "/data/jkarancs/CMSSW/PhaseI/test/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_phase1_oldcode_10k.root";
-  const char* gen_phase1_old_newcond = "/data/jkarancs/CMSSW/PhaseI/test/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/gen_phase1_oldcode_newcond_10k.root";
-  const char* tem_phase1_old_newcond = "/data/jkarancs/CMSSW/PhaseI/test/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_phase1_oldcode_newcond_10k.root";
-  const char* gen_phase1_new_oldcond = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/gen_phase1_newcode_oldcond_50k.root";
-  const char* tem_phase1_new_oldcond = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_phase1_newcode_oldcond_50k.root";
-  const char* gen_phase1_new_newcond = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/gen_phase1_newcode_newcond_50k.root";
-  const char* tem_phase1_new_newcond = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_phase1_newcode_newcond_50k.root";
+  const char* gen_phase1_old_oldcond = "/data/jkarancs/CMSSW/PhaseI/test/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/gen_phase1_oldcode_10k.root";
+  const char* tem_phase1_old_oldcond = "/data/jkarancs/CMSSW/PhaseI/test/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/tem_phase1_oldcode_10k.root";
+  const char* gen_phase1_old_newcond = "/data/jkarancs/CMSSW/PhaseI/test/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/gen_phase1_oldcode_newcond_10k.root";
+  const char* tem_phase1_old_newcond = "/data/jkarancs/CMSSW/PhaseI/test/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/tem_phase1_oldcode_newcond_10k.root";
+  const char* gen_phase1_new_oldcond = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/gen_phase1_newcode_oldcond_50k.root";
+  const char* tem_phase1_new_oldcond = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/tem_phase1_newcode_oldcond_50k.root";
+  const char* gen_phase1_new_newcond = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/gen_phase1_newcode_newcond_50k.root";
+  const char* tem_phase1_new_newcond = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/tem_phase1_newcode_newcond_50k.root";
   
   // Phase 0
-  const char* gen_phase0_old_oldcond = "/data/jkarancs/CMSSW/PhaseI/test/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/gen_phase0_oldcode_10k.root";
-  const char* tem_phase0_old_oldcond = "/data/jkarancs/CMSSW/PhaseI/test/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_phase0_oldcode_10k.root";
-  const char* gen_phase0_new_oldcond = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/gen_phase0_newcode_10k.root";
-  const char* tem_phase0_new_oldcond = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_phase0_newcode_10k.root";
+  const char* gen_phase0_old_oldcond = "/data/jkarancs/CMSSW/PhaseI/test/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/gen_phase0_oldcode_10k.root";
+  const char* tem_phase0_old_oldcond = "/data/jkarancs/CMSSW/PhaseI/test/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/tem_phase0_oldcode_10k.root";
+  const char* gen_phase0_new_oldcond = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/gen_phase0_newcode_10k.root";
+  const char* tem_phase0_new_oldcond = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/tem_phase0_newcode_10k.root";
 
   // Phase 1
   // MC
   // 0T
-  const char* gen_phase1_mc_0T       = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/gen_phase1_newcode_newcond_50k.root";
-  const char* tem_phase1_mc_0T       = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_phase1_newcode_newcond_50k.root";
-  const char* gen_phase1_mc_38T      = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/gen_phase1_91X_MC0T_4k.root";
-  const char* tem_phase1_mc_38T      = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_phase1_91X_MC0T_4k.root";
+  const char* gen_phase1_mc_0T       = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/gen_phase1_newcode_newcond_50k.root";
+  const char* tem_phase1_mc_0T       = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/tem_phase1_newcode_newcond_50k.root";
+  const char* gen_phase1_mc_38T      = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/gen_phase1_91X_MC0T_4k.root";
+  const char* tem_phase1_mc_38T      = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre4/src/SiPixelTools/PixelHitAssociator/tem_phase1_91X_MC0T_4k.root";
   // Data 2017
-  const char* gen_phase1_data_0T  = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre6/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/gen_phase1_91X_Data0T_10k.root";
-  const char* tem_phase1_data_0T  = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre6/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_phase1_91X_Data0T_10k.root";
-  const char* gen_phase1_data_38T = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre6/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/gen_phase1_91X_Data38T_4k.root";
-  const char* tem_phase1_data_38T = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre6/src/DPGAnalysis-SiPixelTools/PixelHitAssociator/tem_phase1_91X_Data38T_4k.root";
+  const char* gen_phase1_data_0T  = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre6/src/SiPixelTools/PixelHitAssociator/gen_phase1_91X_Data0T_10k.root";
+  const char* tem_phase1_data_0T  = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre6/src/SiPixelTools/PixelHitAssociator/tem_phase1_91X_Data0T_10k.root";
+  const char* gen_phase1_data_38T = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre6/src/SiPixelTools/PixelHitAssociator/gen_phase1_91X_Data38T_4k.root";
+  const char* tem_phase1_data_38T = "/data/jkarancs/CMSSW/PhaseI/CMSSW_9_0_0_pre6/src/SiPixelTools/PixelHitAssociator/tem_phase1_91X_Data38T_4k.root";
 
   //save_dir = "/afs/cern.ch/user/j/jkarancs/public/Resolution/2017MC/Phase1/2016_11_16/";
   //save_dir = "/afs/cern.ch/user/j/jkarancs/public/Resolution/2017MC/Phase1/2016_11_18/";
