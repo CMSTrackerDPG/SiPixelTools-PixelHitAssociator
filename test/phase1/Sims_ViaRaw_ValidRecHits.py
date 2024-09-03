@@ -434,7 +434,7 @@ process.siPixelDigis.UsePhase1 = cms.bool(True)
 
 
 # my rec-sim hit compare 
-process.load("DPGAnalysis-SiPixelTools.PixelHitAssociator.SiPixelRecHitsValid_cff")
+process.load("SiPixelTools.PixelHitAssociator.SiPixelRecHitsValid_cff")
 
 process.pixRecHitsValid.outputFile="pixelsimrechitshistos2.root"
 #process.pixRecHitsValid.verbose=True

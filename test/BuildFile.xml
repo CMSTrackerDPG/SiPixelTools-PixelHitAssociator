@@ -17,6 +17,6 @@
   <use   name="DQMServices/Core"/>
   <use   name="DataFormats/TrackerRecHit2D"/>
   <use   name="TrackingTools/TransientTrackingRecHit"/>
-  <use   name="DPGAnalysis-SiPixelTools/PixelHitAssociator"/>
+  <use   name="SiPixelTools/PixelHitAssociator"/>
   <use   name="SimTracker/TrackerHitAssociation"/>
 </library>

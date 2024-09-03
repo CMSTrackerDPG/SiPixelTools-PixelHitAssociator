@@ -228,7 +228,7 @@ process.load("RecoTracker.TrackProducer.TrackRefitters_cff")
 #process.mix.digitizers.pixel.NumPixelEndcap = cms.int32(3)
 
 # Load and confiugre the plugin you want to use
-process.load("DPGAnalysis-SiPixelTools.PixelHitAssociator.SiPixelRecHitsValid_cff")
+process.load("SiPixelTools.PixelHitAssociator.SiPixelRecHitsValid_cff")
 process.pixRecHitsValid.tracks = 'TrackRefitter'
 
 # Specify inputs/outputs

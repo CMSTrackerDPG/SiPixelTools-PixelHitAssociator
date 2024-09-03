@@ -219,8 +219,8 @@ if useLocalGenErr :
 #process.siPixelDigis.InputLabel = 'rawDataCollector'  <--- not needed 
 
 # my rec-sim hit compare 
-#  process.load("DPGAnalysis-SiPixelTools.PixelHitAssociator.SiPixelRecHitsValid_cff")
-process.load("DPGAnalysis-SiPixelTools.PixelHitAssociator.StudyRecHitResolution_cff")
+#  process.load("SiPixelTools.PixelHitAssociator.SiPixelRecHitsValid_cff")
+process.load("SiPixelTools.PixelHitAssociator.StudyRecHitResolution_cff")
 
 # not on track 
 process.pixRecHitsValid.outputFile="pixelrechitshisto.root"
