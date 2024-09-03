@@ -2,7 +2,7 @@
 #define StudyRecHitResolution_h
 
 #include "FWCore/Framework/interface/Frameworkfwd.h"
-#include "FWCore/Framework/interface/EDAnalyzer.h"
+#include "FWCore/Framework/interface/one/EDAnalyzer.h"
 #include "FWCore/Framework/interface/Event.h"
 #include "FWCore/Framework/interface/EventSetup.h"
 #include "FWCore/Framework/interface/ESHandle.h"
@@ -65,7 +65,7 @@
 
 class TrackerTopology;
 
-class StudyRecHitResolution : public edm::EDAnalyzer {
+class StudyRecHitResolution : public edm::one::EDAnalyzer<edm::one::SharedResources> {
 
    public:
 	//Constructor
@@ -76,16 +76,18 @@ class StudyRecHitResolution : public edm::EDAnalyzer {
 
    protected:
 
-	virtual void analyze(const edm::Event& e, const edm::EventSetup& c);
-	void beginJob();
-	void endJob();
+	virtual void analyze(const edm::Event& e, const edm::EventSetup& c) override;
+	void beginJob() override;
+	void endJob() override;
 
    private:
 	//DQMStore* dbe_;
 	std::string outputFile_;
 	bool verbose_;
 	edm::EDGetTokenT<edmNew::DetSetVector<SiPixelRecHit>> tPixelRecHit;
-        edm::EDGetTokenT<TrajTrackAssociationCollection> tTracks;
+    edm::EDGetTokenT<TrajTrackAssociationCollection> tTracks;
+    edm::ESGetToken<TrackerTopology, TrackerTopologyRcd> trackerTopoToken_;
+    edm::ESGetToken<TrackerGeometry, TrackerDigiGeometryRecord> trackerGeomToken_;
 	edm::ParameterSet conf_;
 
 	TrackerHitAssociator::Config trackerHitAssociatorConfig_;

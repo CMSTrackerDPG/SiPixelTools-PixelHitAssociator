@@ -37,11 +37,14 @@ StudyRecHitResolution::StudyRecHitResolution(const ParameterSet& ps):
   src_( ps.getParameter<edm::InputTag>( "src" ) ),
   useTracks_( ps.getUntrackedParameter<bool>( "useTracks", false ) ),
   tracks_( ps.getUntrackedParameter<edm::InputTag>( "tracks", edm::InputTag("generalTracks") ) )  {
+  usesResource("TFileService");
   if (useTracks_) {
     tTracks = consumes<TrajTrackAssociationCollection>( tracks_ );
   } else {
     tPixelRecHit = consumes<edmNew::DetSetVector<SiPixelRecHit>>( src_ );
   }
+  trackerTopoToken_ = esConsumes<TrackerTopology, TrackerTopologyRcd>();
+  trackerGeomToken_ = esConsumes<TrackerGeometry, TrackerDigiGeometryRecord>();
 
   outputFile_ = ps.getUntrackedParameter<string>("outputFile", "pixelrechitshisto.root");
   verbose_ = ps.getUntrackedParameter<bool>("verbose", false);
@@ -64,17 +67,17 @@ void StudyRecHitResolution::analyze(const edm::Event& e, const edm::EventSetup& 
   double etaMax=2.5;
 
   //Retrieve tracker topology from geometry
-  edm::ESHandle<TrackerTopology> tTopoHand;
-  es.get<TrackerTopologyRcd>().get(tTopoHand);
+  edm::ESHandle<TrackerTopology> tTopoHand = es.getHandle(trackerTopoToken_);
   const TrackerTopology *tTopo=tTopoHand.product();
 
+  //Get tracker geometry
+  edm::ESHandle<TrackerGeometry> trackerGeometryHandle = es.getHandle(trackerGeomToken_);
+  auto geom = trackerGeometryHandle.product();
+  const TrackerGeometry& theTracker(*geom);
   // Check which phase we are in
-  edm::ESHandle<TrackerGeometry> trackerGeometryHandle;
-  es.get<TrackerDigiGeometryRecord>().get(trackerGeometryHandle);
-  auto trackerGeometry = trackerGeometryHandle.product();
   phase_ = 
-    trackerGeometry -> isThere(GeomDetEnumerators::P1PXB) &&
-    trackerGeometry -> isThere(GeomDetEnumerators::P1PXEC);
+    geom -> isThere(GeomDetEnumerators::P1PXB) &&
+    geom -> isThere(GeomDetEnumerators::P1PXEC);
 
   if ( ((int) e.id().event() % 1000 == 0) || verbose_ )
     cout << " Run = " << e.id().run() << " Event = " << e.id().event() << endl;
@@ -90,11 +93,6 @@ void StudyRecHitResolution::analyze(const edm::Event& e, const edm::EventSetup& 
     //e.getByLabel( src_, recHitColl);
     e.getByToken(tPixelRecHit , recHitColl);
   }
-  
-  //Get event setup
-  edm::ESHandle<TrackerGeometry> geom;
-  es.get<TrackerDigiGeometryRecord>().get(geom); 
-  const TrackerGeometry& theTracker(*geom);
   
   if(verbose_) cout<<" Call associator "<<endl;
 #ifdef PIXEL_ASSOCIATOR

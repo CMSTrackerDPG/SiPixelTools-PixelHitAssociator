@@ -2,7 +2,7 @@
 #define StudyRecHitMatching_h
 
 #include "FWCore/Framework/interface/Frameworkfwd.h"
-#include "FWCore/Framework/interface/EDAnalyzer.h"
+#include "FWCore/Framework/interface/one/EDAnalyzer.h"
 #include "FWCore/Framework/interface/Event.h"
 #include "FWCore/Framework/interface/EventSetup.h"
 #include "FWCore/Framework/interface/ESHandle.h"
@@ -68,7 +68,7 @@
 
 class TrackerTopology;
 
-class StudyRecHitMatching : public edm::EDAnalyzer {
+class StudyRecHitMatching : public edm::one::EDAnalyzer<edm::one::SharedResources> {
 
    public:
 	//Constructor
@@ -79,9 +79,9 @@ class StudyRecHitMatching : public edm::EDAnalyzer {
 
    protected:
 
-	virtual void analyze(const edm::Event& e, const edm::EventSetup& c);
-	void beginJob();
-	void endJob();
+	virtual void analyze(const edm::Event& e, const edm::EventSetup& c) override;
+	void beginJob() override;
+	void endJob() override;
 
    private:
 	//DQMStore* dbe_;
@@ -90,6 +90,8 @@ class StudyRecHitMatching : public edm::EDAnalyzer {
 	edm::EDGetTokenT<edmNew::DetSetVector<SiPixelRecHit>> tPixelRecHit;
         edm::EDGetTokenT<TrajTrackAssociationCollection> tTracks;
 	edm::EDGetTokenT<edm::PSimHitContainer> tPixelSimHits;
+    edm::ESGetToken<TrackerTopology, TrackerTopologyRcd> trackerTopoToken_;
+    edm::ESGetToken<TrackerGeometry, TrackerDigiGeometryRecord> trackerGeomToken_;
 
 	edm::ParameterSet conf_;
 
